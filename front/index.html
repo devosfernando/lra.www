@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>🈴 Estadisticas</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/medidor.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="js/consumosRest/validateUser.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+
+  <body id="page-top" class="hidden">
+    <div class="centrado">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div id="message"></div>
+    </div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+          style="font-size: 27px !important"
+        >
+          <div class="sidebar-brand-text mx-3">🅻🆁🅰™</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Estadisticas</span></a
+          >
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="serviceApi" style="cursor: pointer">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Api</span></a
+          >
+        </li>
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          >
+            <!-- Sidebar Toggle (Topbar) -->
+
+            <div class="input-group">
+              <h6>Estadisticas KPI</h6>
+            </div>
+            <!-- Topbar Search -->
+            <form
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+            ></form>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control bg-light border-0 small"
+                        placeholder="Search for..."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle photoUser"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span
+                    class="mr-2 d-none d-lg-inline text-gray-600 small"
+                    id="nameUser"
+                    ></span
+                  >
+                 
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid" id="chartIndex">
+            <!-- Content Row -->
+
+            <div class="row">
+              <!-- Pie Chart -->
+              <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <h6
+                      class="m-0 font-weight-bold text-primary"
+                      id="kpiFecha"
+                    ></h6>
+                    <div class="dropdown no-arrow">
+                      <a
+                        class="dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i
+                          class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
+                        ></i>
+                      </a>
+                      <div
+                        class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"
+                          >Something else here</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                      <div
+                        id="container"
+                        style="height: 100%; margin: 10 auto"
+                      ></div>
+                    </div>
+                    <div class="mt-4 text-center small"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <h6
+                      class="m-0 font-weight-bold text-primary"
+                      id="kpiyear"
+                    ></h6>
+                    <div class="dropdown no-arrow">
+                      <a
+                        class="dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i
+                          class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
+                        ></i>
+                      </a>
+                      <div
+                        class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"
+                          >Something else here</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-area">
+                      <canvas id="myAreaChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Dowload apk -->
+              <div class="col-xl-8 col-lg-12 dowload">
+                <a
+                  href="https://drive.google.com/file/d/1GLqqy7TuPwDUkWFWP_tOItl2VuHuLZaj/view?usp=share_link"
+                  target="_blank"
+                >
+                  <img
+                    title="Dowload apk"
+                    alt="Download apk"
+                    src="data:image/jpeg;base64,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"
+                /></a>
+              </div>
+              <div class="col-xl-8 col-lg-12 dowload">
+                <a
+                  href="https://drive.google.com/file/d/1GLqqy7TuPwDUkWFWP_tOItl2VuHuLZaj/view?usp=share_link"
+                  target="_blank"
+                  class="btn btn-success btn-icon-split"
+                >
+                  <span class="text">Descarga la app para android</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="iframe-container">
+            <center>
+              <iframe
+                height="1000px"
+                width="1000px"
+                src="http://plandebackend.ddns.net:8080/"
+                style="display: none; border: none"
+                id="iframePlan"
+              ></iframe>
+            </center>
+          </div>
+
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Team LRA &copy; 2023</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿ Deseas salir ?</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Seleccione "Cerrar sesión" a continuación si está listo para
+            finalizar su sesión actual.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <a class="btn btn-primary" id="logOut">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <script src="../data/key.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+
+    <script src="js/consumosRest/kpi-year.js"></script>
+    <script src="js/consumosRest/kpi-current.js"></script>
+    <script src="js/consumosRest/service-api.js"></script>
+    <script src="js/consumosRest/login.js"></script>
+  </body>
+</html>
