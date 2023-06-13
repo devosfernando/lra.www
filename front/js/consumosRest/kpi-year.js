@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var apiKey =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoianVhbmNhcmxvcy5jb3JvbmFkb0BiYnZhLmNvbSIsImlhdCI6MTY3Nzc5MjIyNCwiZXhwIjoxNjc3NzkyNTI0fQ.wJTbooDvyg8IpmDLjNJKbmrl7-1v-pF4G_1781S4HEU";
-  var url = "http://devosfernando.com:38900/api/1";
+  var url = "http://192.168.0.200:38900/api/1";
   var user = {
     email: "juancarlos.coronado@bbva.com",
   };
