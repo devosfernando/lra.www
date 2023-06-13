@@ -1,6 +1,6 @@
 function callApi(){
   $.ajax({
-    url: `http://192.168.0.200:38900/api/1/auth/parametry/data`,
+    url: `http://devosfernando.com:38900/api/1/auth/parametry/data`,
     type: "GET",
     dataType: "json",
     success: function (data) {
