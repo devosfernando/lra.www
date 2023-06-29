@@ -134,10 +134,10 @@ $(document).ready(function () {
       },
       success: function (data) {
         configfurationGraphic.high_chartsIni = data.response[0]["value"];
-        configfurationGraphic.high_chartsFin = data.response[1]["value"] + 20 ;
+        configfurationGraphic.high_chartsFin = data.response[1]["value"] ;
         kpiActual(tkn);
       },
-      
+
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
       },
