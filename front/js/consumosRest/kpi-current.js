@@ -137,6 +137,7 @@ $(document).ready(function () {
         configfurationGraphic.high_chartsFin = data.response[1]["value"];
         kpiActual(tkn);
       },
+      
       error: function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
       },
