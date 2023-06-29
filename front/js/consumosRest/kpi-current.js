@@ -134,7 +134,7 @@ $(document).ready(function () {
       },
       success: function (data) {
         configfurationGraphic.high_chartsIni = data.response[0]["value"];
-        configfurationGraphic.high_chartsFin = data.response[1]["value"];
+        configfurationGraphic.high_chartsFin = data.response[1]["value"] + 20 ;
         kpiActual(tkn);
       },
       error: function (jqXHR, textStatus, errorThrown) {
